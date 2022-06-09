@@ -1,0 +1,30 @@
+[
+  {
+    "userId": "001",
+    "name": "Cleaning the kitchen"
+  },
+  {
+    "userId": "001",
+    "name": "Washing the clothes"
+  },
+  {
+    "userId": "002",
+    "name": "Dusting"
+  },
+  {
+    "userId": "002",
+    "name": "Washing the dishes"
+  },
+  {
+    "userId": "003",
+    "name": "Washing the clothes"
+  },
+  {
+    "userId": "003",
+    "name": "Folding clothes"
+  },
+  {
+    "userId": "003",
+    "name": "Ironing the clothes"
+  }
+]
