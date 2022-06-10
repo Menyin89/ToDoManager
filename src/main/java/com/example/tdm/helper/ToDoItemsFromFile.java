@@ -6,12 +6,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 
-import javax.imageio.stream.FileImageInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 
-//Helper class to import initial ToDoItems from ToDoItems.json
+//Helper class to import initial items from ToDoItems.json
 @Service
 public class ToDoItemsFromFile {
 

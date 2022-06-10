@@ -20,8 +20,11 @@ public class ToDoItem {
     @Column
     private boolean done = false;
 
-    @ManyToOne
-    @JoinColumn(name="user_id", nullable = false)
+    @Transient
+    private Integer userId;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="user_id")
     private User user;
 
     public ToDoItem() {
@@ -34,6 +37,14 @@ public class ToDoItem {
 
     public Integer getId() {
         return id;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getName() {
@@ -51,4 +62,13 @@ public class ToDoItem {
     public void setDone(boolean done) {
         this.done = done;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
 }
