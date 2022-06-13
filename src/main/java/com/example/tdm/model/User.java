@@ -1,7 +1,5 @@
 package com.example.tdm.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +10,7 @@ public class User {
 
     @Id
     @Column(name="user_id")
-    @JsonProperty("id")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private Integer id;
 
     @Column(name="user_name")
@@ -33,9 +31,12 @@ public class User {
         toDoItem.setUser(null);
     }
 
-    public User(Integer code, String userName) {
-        this.id = code;
+    public User(String userName) {
         this.userName = userName;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public String getUserName() {

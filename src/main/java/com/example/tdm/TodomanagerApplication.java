@@ -2,8 +2,9 @@ package com.example.tdm;
 
 import com.example.tdm.helper.ToDoItemsFromFile;
 import com.example.tdm.model.ToDoItem;
+import com.example.tdm.model.User;
 import com.example.tdm.repository.ToDoRepository;
-import com.example.tdm.service.UserService;
+import com.example.tdm.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -17,8 +18,9 @@ public class TodomanagerApplication implements CommandLineRunner {
 
 	@Value("${tdm.importfile}")
 	private String importFile;
+
 	@Autowired
-	private UserService userService;
+	private UserRepository userRepository;
 
 	@Autowired
 	private ToDoRepository toDoRepository;
@@ -37,16 +39,16 @@ public class TodomanagerApplication implements CommandLineRunner {
 	}
 
 	private void createUsers() {
-		userService.createUser(001, "User1");
-		userService.createUser(002, "User2");
-		userService.createUser(003, "User3");
-		userService.createUser(004, "User4");
+		userRepository.save(new User("User1"));
+		userRepository.save(new User("User2"));
+		userRepository.save(new User("User3"));
+		userRepository.save(new User("User4"));
 	}
 
 	private void createToDoItems(String fileToImport) throws IOException {
 		toDoItemsFromFile.read(fileToImport).forEach(importedToDoItem ->
 				toDoRepository.save(new ToDoItem(importedToDoItem.getName(),
-						userService.findById(importedToDoItem.getUserId()))));
+						userRepository.findById(importedToDoItem.getUserId()).get())));
 	}
 
 }

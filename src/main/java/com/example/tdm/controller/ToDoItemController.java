@@ -2,11 +2,12 @@ package com.example.tdm.controller;
 
 import com.example.tdm.model.ToDoItem;
 import com.example.tdm.repository.ToDoRepository;
+import com.example.tdm.service.ToDoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.util.List;
 
 @RestController
 @RequestMapping("/toDoItems")
@@ -14,6 +15,9 @@ public class ToDoItemController {
 
     @Autowired
     ToDoRepository toDoRepository;
+
+    @Autowired
+    ToDoService toDoService;
 
     @PostMapping()
     public ToDoItem createToDoItem(@RequestBody ToDoItem toDoItem) {
@@ -23,6 +27,11 @@ public class ToDoItemController {
     @GetMapping
     public Iterable<ToDoItem> getAllToDoItems() {
         return this.toDoRepository.findAll();
+    }
+
+    @GetMapping("/actives")
+    public List<ToDoItem> getAllActiveToDoItems() {
+        return this.toDoService.findAllActive();
     }
 
     @GetMapping("/{id}")
